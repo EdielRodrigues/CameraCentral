@@ -1,0 +1,7 @@
+MINHA CENTRAL DE CÂMERAS V3
+
+Publique a pasta camera_pwa em HTTPS (GitHub Pages ou Render static site).
+Esta versão possui cadastro, QR, Bluetooth compatível, GPS opcional, backup, tema escuro, visualização HTTPS e diagnóstico informativo.
+ONVIF/RTSP não reproduzem diretamente em navegador. O diagnóstico não testa portas nem autenticação. Para vídeo real use gateway na mesma LAN com saída HTTPS e autenticação.
+Dados de exemplo Yoosee: IP 192.168.1.10, ONVIF 5000, RTSP 554, caminho /onvif1. Credenciais nunca devem ser publicadas.
+Backup não inclui senhas. A senha RTSP não é salva.
