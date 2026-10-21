@@ -1,0 +1,23 @@
+MINHA CENTRAL DE CÂMERAS V4 — PROTÓTIPO DE GATEWAY REAL
+
+Arquivos camera_pwa/: site PWA. Publique em hospedagem HTTPS, mantendo o mesmo endereço da V3 para preservar os cadastros no navegador.
+Arquivos gateway/: servidor Node.js para executar NA MESMA REDE LOCAL da câmera, com FFmpeg instalado e proxy HTTPS confiável.
+
+IMPORTANTE:
+- A câmera Yoosee foi detectada em 192.168.1.10, ONVIF 5000, RTSP 554, /onvif1. Isso NÃO comprova autenticação de vídeo.
+- O gateway inicia FFmpeg e fornece vídeo HLS se as credenciais RTSP forem aceitas. A falha 400 após autenticação Digest identificada no Onvier ainda pode impedir vídeo.
+- Não funciona colocar apenas gateway no Render: Render não alcança 192.168.1.10 diretamente.
+- Navegador PWA hospedado em HTTPS requer gateway HTTPS válido e acessível. Sem proxy/túnel HTTPS, a conexão do PWA será bloqueada.
+- O gateway de exemplo não deve ser exposto à internet diretamente; ele foi feito para rede confiável e requer controles adicionais para produção (TLS, autenticação, limitação de requisições e controle de sessões).
+- Não configure encaminhamento de portas 554/5000 no roteador.
+
+NO COMPUTADOR OU DISPOSITIVO QUE RODA NODE + FFMPEG NA MESMA REDE:
+  cd gateway
+  export GATEWAY_TOKEN='um-segredo-longo-com-mais-de-20-caracteres'
+  export ALLOWED_ORIGIN='https://endereco-exato-do-seu-pwa'
+  export HOST='127.0.0.1'
+  npm start
+
+Publique o gateway com proxy HTTPS seguro e acesso restrito, então informe endereço e token no PWA. O token e a senha RTSP não são gravados no backup ou localStorage.
+
+LIMITAÇÕES: não inclui servidor de túnel HTTPS, integração P2P Yoosee nem player RTSP nativo Android. O HLS é gerado sem áudio e depende do codec H.264. O gateway mantém sessões por até 20 minutos.
