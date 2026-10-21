@@ -1,0 +1,1 @@
+{"name":"minha-central-rtsp-gateway","version":"4.0.0","private":true,"scripts":{"start":"node server.js"},"engines":{"node":">=20"}}
